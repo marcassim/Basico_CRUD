@@ -1,30 +1,33 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-    <a href="{% url 'pessoa.novo' %}">Novo</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Data de Nascimento</th>
-                <th>Ativa</th>
-            </tr>
-            <tbody>
-                {% for pessoa in object_list %}
-                    <tr>
-                        <td>{{ pessoa.nome_completo }}</td>
-                        <td>{{ pessoa.data_nascimento|date:"d/m/Y" }}</td>
-                        <td> 
-                            {% if pessoa.ativa %}
-                                Sim
-                            {% else %}
-                                Não
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </thead>
-    </table>
+<a href="{% url 'pessoa.novo' %}">Novo</a>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Ativa</th>
+            <th>Ações</th>
+        </tr>
+    <tbody>
+        {% for pessoa in object_list %}
+        <tr>
+            <td>{{ pessoa.nome_completo }}</td>
+            <td>{{ pessoa.data_nascimento|date:"d/m/Y" }}</td>
+            <td>
+                {% if pessoa.ativa %}
+                Sim
+                {% else %}
+                Não
+                {% endif %}
+            </td>
+            <td><a href="{% url 'pessoa.editar' pessoa.pk %}">Editar</a></td>
+            <td><a href="{% url 'pessoa.remover' pessoa.pk %}">Remover</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </thead>
+</table>
 
 {% endblock content %}
