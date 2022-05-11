@@ -15,11 +15,17 @@ def desativar_todos(modeladmin, request, queryset):
 
 
 class PessoaAdmin(admin.ModelAdmin):
-    list_display = ["nome_completo", "data_nascimento", "ativa"]
+    list_display = ["nome_completo", "data_nascimento", "ativa", "usuario"]
     list_filter = ["ativa", "data_nascimento"]
     search_fields = ["nome_completo"]
     actions = [ativar_todos, desativar_todos]
 
 
+class ContatoAdmin(admin.ModelAdmin):
+    list_display = ["nome", "email", "telefone", "pessoa"]
+    list_filter = ["nome", "pessoa"]
+    seach_fields = ["nome"]
+
+
 admin.site.register(Pessoa, PessoaAdmin)
-admin.site.register(Contato)
+admin.site.register(Contato, ContatoAdmin)
