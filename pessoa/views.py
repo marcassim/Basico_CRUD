@@ -1,10 +1,11 @@
-from django.http import HttpResponse, Http404
+from django.http import Http404, HttpResponse
 from django.http.response import HttpResponseNotAllowed
-from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Pessoa, Contato
-from .forms import PessoaForm, ContatoForm
+from django.urls import reverse
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from .forms import ContatoForm, PessoaForm
+from .models import Contato, Pessoa
 
 
 class ListaPessoaView(ListView):
